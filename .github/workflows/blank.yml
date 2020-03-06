@@ -12,7 +12,10 @@ jobs:
 
     # This is the trigger for when *I* star a repo
     if: github.actor == github.event.repository.owner.login
-    
+
     steps:
-      - name: Say Hello World
-        run: echo Hello, world!
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - run: |
+        az account list --output table
