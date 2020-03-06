@@ -2,7 +2,7 @@
 name: Launch repo on VS Online
 
 on:
-  watch
+  watch:
     types: [started]
 
 jobs:
