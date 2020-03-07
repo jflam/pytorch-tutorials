@@ -18,4 +18,4 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     - run: |
-        az account list --output table
+        az vm start -g gobook-vms -n pytorch
