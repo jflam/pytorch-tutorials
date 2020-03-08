@@ -14,8 +14,19 @@ jobs:
     if: github.actor == github.event.repository.owner.login
 
     steps:
+    # I hope Github Actions block
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     - run: |
         az vm start -g gobook-vms -n pytorch
+
+    # Now let's run this Github action
+    name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: whoami
